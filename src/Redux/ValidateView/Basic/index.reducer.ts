@@ -1,13 +1,14 @@
+import { PayloadAction } from '@reduxjs/toolkit'
 import { Actions } from './index.constants'
 
 export const initialState = {
     fullName: false,
     email: false,
     birthday: false,
-    termsPrivacy: false
+    termsPrivacy: false,
 }
 
-const basicReducer = (state = initialState, action: any) => {
+const basicReducer = (state = initialState, action: PayloadAction<string>) => {
     switch (action.type) {
         case Actions.VALIDATE_FULL_NAME:
             return { ...state, fullName: action.payload }

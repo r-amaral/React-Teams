@@ -13,6 +13,7 @@ import {
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ButtonTeams } from "../../Components/Button/styled";
+import { currentPage } from "../../Redux/ValidateView/Navigate/index.actions";
 import {
     validateEmail,
     validateFullName,
@@ -41,6 +42,9 @@ const Basic = () => {
         dispatch(validateEmail(regEmail.test(email)));
         dispatch(validateBirthday(validateAge));
         dispatch(validateTermsPrivacy(termsPrivacy.current?.checked));
+
+        Object.values(basicReducer).find((attr: any) => attr === false) ===
+            undefined && dispatch(currentPage("SOCIAL"));
     };
 
     return (

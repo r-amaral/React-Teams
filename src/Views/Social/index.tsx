@@ -6,18 +6,21 @@ const Social = () => {
     return (
         <SocialContainer>
             <SocialInputs>
-                {/* <InputPattern
+                <InputPattern
                     type={"text"}
                     labelName={"Linkedin"}
                     placeholder={
                         "https://www.linkedin.com/in/foo-bar-3a0560104"
                     }
-                /> */}
-                {/* <InputPattern
+                    validate={false}
+                    setState={"teste"}
+                />
+                <InputPattern
                     type={"text"}
                     labelName={"GitHub *"}
                     placeholder={"https://github.com/foobar"}
-                /> */}
+                    setState={"teste"}
+                />
             </SocialInputs>
             <ButtonTeams>Next</ButtonTeams>
         </SocialContainer>
