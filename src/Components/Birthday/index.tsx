@@ -1,5 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import SelectBirthDay from "./SelectBirthDay";
+
+import { birthdayAge } from "../../Redux/ValidateView/Basic/Birthday/index.action";
+
 import {
     BirthDayAge,
     BirthDayAgeContainer,
@@ -9,17 +14,15 @@ import {
 } from "./styled";
 
 const Birthday = ({ setValidateAge }: any) => {
-    const [dayState, setDayState] = useState<number>();
-    const [monthState, setMonthState] = useState<string>();
-    const [yearState, setYearState] = useState<number>();
-    const [ageState, setAgeState] = useState<number>();
+    const dispatch = useDispatch();
 
-    const setStates = { setDayState, setMonthState, setYearState };
+    const { day, month, year, age } = useSelector(
+        (state: any) => state.birthdayReducer
+    );
 
     useEffect(() => {
-        if (dayState && monthState && yearState)
-            calculateAge(dayState, monthState, yearState);
-    }, [dayState, monthState, yearState]);
+        if (day && month && year) calculateAge(day, month, year);
+    }, [day, month, year, age]);
 
     function calculateAge(day: number, month: string | number, year: number) {
         const dateObj = new Date();
@@ -27,35 +30,23 @@ const Birthday = ({ setValidateAge }: any) => {
         const yearCalc = dateObj.getFullYear();
         const dayCalc = dateObj.getDate();
 
-        let age = yearCalc - year;
+        let ageC = yearCalc - year;
 
-        if (monthCalc < month || (monthCalc == month && dayCalc < day)) age--;
+        if (monthCalc < month || (monthCalc == month && dayCalc < day)) ageC--;
 
         setValidateAge(true);
-        setAgeState(age);
+        dispatch(birthdayAge(ageC));
     }
 
     return (
         <BirthDayContainer>
             <BirthDayTitle>Birthday *</BirthDayTitle>
-            <SelectBirthDay
-                type={"Day"}
-                setStatesData={setStates}
-                states={dayState}
-            />
-            <SelectBirthDay
-                type={"Month"}
-                setStatesData={setStates}
-                states={monthState}
-            />
-            <SelectBirthDay
-                type={"Year"}
-                setStatesData={setStates}
-                states={yearState}
-            />
+            <SelectBirthDay dateDefault={day} type={"Day"} states={day} />
+            <SelectBirthDay dateDefault={month} type={"Month"} states={month} />
+            <SelectBirthDay dateDefault={year} type={"Year"} states={year} />
             <BirthDayAgeContainer>
                 <BirthDayName>Age</BirthDayName>
-                <BirthDayAge>{ageState ? ageState : "Age"}</BirthDayAge>
+                <BirthDayAge>{age ? age : "Age"}</BirthDayAge>
             </BirthDayAgeContainer>
         </BirthDayContainer>
     );

@@ -1,4 +1,12 @@
+import { useDispatch } from "react-redux";
 import { ITypeSelect } from "../../../Interfaces/ITypeSelect";
+
+import {
+    birthdayDay,
+    birthdayMonth,
+    birthdayYear,
+} from "../../../Redux/ValidateView/Basic/Birthday/index.action";
+
 import {
     OptionBirthday,
     SelectContainer,
@@ -6,9 +14,11 @@ import {
     SelectStyle,
 } from "./styled";
 
-const SelectBirthDay = ({ type, setStatesData, states }: ITypeSelect) => {
+const SelectBirthDay = ({ type, states, dateDefault }: ITypeSelect) => {
     let dateValue;
     const date = [];
+
+    const dispatch = useDispatch();
 
     const month = [
         "January",
@@ -34,11 +44,11 @@ const SelectBirthDay = ({ type, setStatesData, states }: ITypeSelect) => {
     const handleSelect = ({ target }: any) => {
         switch (type) {
             case "Day":
-                return setStatesData.setDayState(target.value);
+                return dispatch(birthdayDay(target.value));
             case "Month":
-                return setStatesData.setMonthState(target.value);
+                return dispatch(birthdayMonth(target.value));
             case "Year":
-                return setStatesData.setYearState(target.value);
+                return dispatch(birthdayYear(target.value));
         }
     };
 
@@ -48,11 +58,12 @@ const SelectBirthDay = ({ type, setStatesData, states }: ITypeSelect) => {
             <SelectStyle
                 states={states}
                 onChange={handleSelect}
-                defaultValue={"nameDefault"}
+                value={dateDefault ? dateDefault : "nameDefault"}
             >
                 <OptionBirthday value="nameDefault" disabled>
                     {type}
                 </OptionBirthday>
+
                 {type === "Month"
                     ? month.map((Month) => (
                           <OptionBirthday key={Month}>{Month}</OptionBirthday>

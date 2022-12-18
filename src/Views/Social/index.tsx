@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { ButtonTeams } from "../../Components/Button/styled";
 import InputPattern from "../../Components/Input/InputPattern";
 import { SocialContainer, SocialInputs } from "./styled";
@@ -13,13 +14,11 @@ const Social = () => {
                         "https://www.linkedin.com/in/foo-bar-3a0560104"
                     }
                     validate={false}
-                    setState={"teste"}
                 />
                 <InputPattern
                     type={"text"}
                     labelName={"GitHub *"}
                     placeholder={"https://github.com/foobar"}
-                    setState={"teste"}
                 />
             </SocialInputs>
             <ButtonTeams>Next</ButtonTeams>

@@ -2,14 +2,18 @@ import { InputStyle, LabelStyle } from "../styled";
 import { InputContactContainer } from "./styled";
 import InputMask from "react-input-mask";
 import { IInput } from "../../../Interfaces/IInput";
+import { useDispatch } from "react-redux";
 
 const InputContact = ({
     type,
     labelName,
     placeholder,
-    setState,
+    modifyState,
     validate,
+    value,
 }: IInput) => {
+    const dispatch = useDispatch();
+
     return (
         <InputContactContainer type={type}>
             <LabelStyle validate={validate} htmlFor={labelName}>
@@ -23,7 +27,10 @@ const InputContact = ({
                     type={type}
                     placeholder={placeholder}
                     validate={validate}
-                    onChange={({ target }) => setState(target.value)}
+                    onChange={({ target }) =>
+                        dispatch(modifyState(target.value))
+                    }
+                    value={value}
                 />
             ) : (
                 <InputStyle
@@ -31,7 +38,10 @@ const InputContact = ({
                     id={labelName}
                     type={type}
                     placeholder={placeholder}
-                    onChange={({ target }) => setState(target.value)}
+                    onChange={({ target }) =>
+                        dispatch(modifyState(target.value))
+                    }
+                    value={value}
                 />
             )}
         </InputContactContainer>

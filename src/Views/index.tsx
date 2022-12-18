@@ -12,9 +12,9 @@ const View = () => {
         <MainElement>
             <MainContainer>
                 <Header />
-                {pageNavigation.Page === "BASIC" && <Basic />}
-                {pageNavigation.Page === "SOCIAL" && <Social />}
-                {pageNavigation.Page === "CERTIFICATES" && <Certificates />}
+                {pageNavigation.page === "BASIC" && <Basic />}
+                {pageNavigation.page === "SOCIAL" && <Social />}
+                {pageNavigation.page === "CERTIFICATES" && <Certificates />}
             </MainContainer>
         </MainElement>
     );

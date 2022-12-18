@@ -4,15 +4,17 @@ import { InputStyle } from "../styled";
 const InputCertificates = ({
     type,
     placeholder,
-    setState,
+    modifyState,
     validate,
+    value,
 }: IInput) => {
     return (
         <InputStyle
             validate={validate}
             type={type}
             placeholder={placeholder}
-            onChange={({ target }) => setState(target.value)}
+            onChange={({ target }) => modifyState(target.value)}
+            value={value}
         />
     );
 };

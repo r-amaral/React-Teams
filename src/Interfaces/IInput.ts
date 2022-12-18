@@ -3,5 +3,6 @@ export interface IInput {
     labelName?: string;
     placeholder: string;
     validate?: any;
-    setState: React.Dispatch<React.SetStateAction<string>>;
+    value: string | number;
+    modifyState: any;
 }

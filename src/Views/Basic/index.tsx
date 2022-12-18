@@ -1,6 +1,13 @@
+import { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import InputPattern from "../../Components/Input/InputPattern";
 import InputContact from "../../Components/Input/InputContact";
 import Birthday from "../../Components/Birthday";
+
+import { ButtonTeams } from "../../Components/Button/styled";
+import { currentPage } from "../../Redux/ValidateView/Navigate/index.actions";
+import { regEmail, regName } from "../../Utils/regex";
 
 import {
     BasicContainer,
@@ -10,41 +17,39 @@ import {
     PrivacyTermsLabel,
 } from "./styled";
 
-import { useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { ButtonTeams } from "../../Components/Button/styled";
-import { currentPage } from "../../Redux/ValidateView/Navigate/index.actions";
 import {
-    validateEmail,
-    validateFullName,
-    validateBirthday,
-    validateTermsPrivacy,
+    basicEmail,
+    basicFullName,
+    basicNickName,
+    basicPhone,
+    basicTermsVerify,
 } from "../../Redux/ValidateView/Basic/index.actions";
 
 const Basic = () => {
-    const [fullName, setFullName] = useState<string>("");
-    const [nickName, setNickName] = useState<string>("");
-    const [email, setEmail] = useState<string>("");
-    const [phone, setPhone] = useState<string>("");
     const [validateAge, setValidateAge] = useState<boolean>(false);
 
-    const termsPrivacy = useRef<any>();
+    const termsPrivacy = useRef<HTMLInputElement>(null);
 
-    const { basicReducer } = useSelector((state: any) => state);
-
-    const regName = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/;
-    const regEmail = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
+    const { fullName, nickName, email, phone } = useSelector(
+        (state: any) => state.basicReducer
+    );
 
     const dispatch = useDispatch();
 
-    const validateData = () => {
-        dispatch(validateFullName(regName.test(fullName)));
-        dispatch(validateEmail(regEmail.test(email)));
-        dispatch(validateBirthday(validateAge));
-        dispatch(validateTermsPrivacy(termsPrivacy.current?.checked));
+    const validateBasicData = () => {
+        const basicState = {
+            fullName: regName.test(fullName),
+            email: regEmail.test(email),
+            birthday: validateAge,
+            termsPrivacy: termsPrivacy.current!.checked,
+        };
 
-        Object.values(basicReducer).find((attr: any) => attr === false) ===
-            undefined && dispatch(currentPage("SOCIAL"));
+        if (Object.values(basicState).every((attr: any) => attr === true))
+            return nextPage();
+    };
+
+    const nextPage = () => {
+        dispatch(currentPage("SOCIAL"));
     };
 
     return (
@@ -53,28 +58,32 @@ const Basic = () => {
                 type={"text"}
                 labelName={"Full Name *"}
                 placeholder={"Foo Bar"}
-                setState={setFullName}
+                modifyState={basicFullName}
                 validate={regName.test(fullName)}
+                value={fullName}
             />
             <InputPattern
                 type={"text"}
                 labelName={"Nickname"}
                 placeholder={"Juanito"}
-                setState={setNickName}
+                modifyState={basicNickName}
+                value={nickName}
             />
             <ContactContainer>
                 <InputContact
                     type={"text"}
                     labelName={"Email *"}
                     placeholder={"foo@bar.com"}
-                    setState={setEmail}
+                    modifyState={basicEmail}
                     validate={regEmail.test(email)}
+                    value={email}
                 />
                 <InputContact
                     type={"phone"}
                     labelName={"Phone"}
                     placeholder={"(83) 00000-0000"}
-                    setState={setPhone}
+                    modifyState={basicPhone}
+                    value={phone}
                 />
             </ContactContainer>
             <Birthday setValidateAge={setValidateAge} />
@@ -83,12 +92,15 @@ const Basic = () => {
                     ref={termsPrivacy}
                     id="privacyterms"
                     type="checkbox"
+                    onChange={({ target }) =>
+                        dispatch(basicTermsVerify(target.value))
+                    }
                 />
                 <PrivacyTermsLabel htmlFor="privacyterms">
                     I accept the terms and privacy
                 </PrivacyTermsLabel>
             </PrivacyTermsContainer>
-            <ButtonTeams onClick={validateData}>Next</ButtonTeams>
+            <ButtonTeams onClick={validateBasicData}>Next</ButtonTeams>
         </BasicContainer>
     );
 };

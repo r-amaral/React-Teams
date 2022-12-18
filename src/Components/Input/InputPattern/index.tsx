@@ -1,3 +1,4 @@
+import { useDispatch } from "react-redux";
 import { IInput } from "../../../Interfaces/IInput";
 import { InputContainer, LabelStyle, InputStyle } from "../styled";
 
@@ -5,9 +6,11 @@ const InputPattern = ({
     type,
     labelName,
     placeholder,
-    setState,
+    modifyState,
     validate,
+    value,
 }: IInput) => {
+    const dispatch = useDispatch();
     return (
         <InputContainer>
             <LabelStyle validate={validate} htmlFor={labelName}>
@@ -18,7 +21,8 @@ const InputPattern = ({
                 id={labelName}
                 type={type}
                 placeholder={placeholder}
-                onChange={({ target }) => setState(target.value)}
+                onChange={({ target }) => dispatch(modifyState(target.value))}
+                value={value}
             />
         </InputContainer>
     );
