@@ -12,8 +12,9 @@ import {
     BirthDayName,
     BirthDayTitle,
 } from "./styled";
+import { basicValidateBirthday } from "../../Redux/ValidateView/Basic/index.actions";
 
-const Birthday = ({ setValidateAge }: any) => {
+const Birthday = () => {
     const dispatch = useDispatch();
 
     const { day, month, year, age } = useSelector(
@@ -22,9 +23,13 @@ const Birthday = ({ setValidateAge }: any) => {
 
     useEffect(() => {
         if (day && month && year) calculateAge(day, month, year);
-    }, [day, month, year, age]);
+    }, [day, month, year]);
 
-    function calculateAge(day: number, month: string | number, year: number) {
+    const calculateAge = (
+        day: number,
+        month: string | number,
+        year: number
+    ): void => {
         const dateObj = new Date();
         const monthCalc = dateObj.getMonth() + 1;
         const yearCalc = dateObj.getFullYear();
@@ -34,9 +39,9 @@ const Birthday = ({ setValidateAge }: any) => {
 
         if (monthCalc < month || (monthCalc == month && dayCalc < day)) ageC--;
 
-        setValidateAge(true);
+        dispatch(basicValidateBirthday(true));
         dispatch(birthdayAge(ageC));
-    }
+    };
 
     return (
         <BirthDayContainer>

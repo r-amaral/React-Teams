@@ -1,4 +1,4 @@
-export const Actions = {
+export const Constants = {
     BIRTHDAY_DAY: 'BASIC_AGE',
     BIRTHDAY_MONTH: 'BIRTHDAY_MONTH',
     BIRTHDAY_YEAR: 'BIRTHDAY_YEAR',

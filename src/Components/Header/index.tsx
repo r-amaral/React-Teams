@@ -1,9 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import { currentPage } from "../../Redux/ValidateView/Navigate/index.actions";
 import { HeaderButton, HeaderContainer, TitleView } from "./styled";
+
+import { currentPage } from "../../Redux/Navigate/index.actions";
+import { validatePageData } from "../../Utils/validatePageData";
 
 const Header = () => {
     const dispatch = useDispatch();
+
     const { pageNavigation } = useSelector((state: any) => state);
 
     return (
@@ -16,12 +19,17 @@ const Header = () => {
             >
                 Basic
             </HeaderButton>
-            <HeaderButton currentPage={pageNavigation.page} active={"SOCIAL"}>
+            <HeaderButton
+                currentPage={pageNavigation.page}
+                active={"SOCIAL"}
+                onClick={() => validatePageData("SOCIAL")}
+            >
                 Social
             </HeaderButton>
             <HeaderButton
                 currentPage={pageNavigation.page}
                 active={"CERTIFICATES"}
+                onClick={() => validatePageData("CERTIFICATES")}
             >
                 Certificates
             </HeaderButton>

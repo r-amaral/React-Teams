@@ -1,0 +1,4 @@
+export const Constants = {
+    SOCIAL_LINKEDIN: 'SOCIAL_LINKEDIN',
+    SOCIAL_GITHUB: 'SOCIAL_GITHUB'
+}

@@ -6,15 +6,15 @@ import Social from "./Social";
 import { MainContainer, MainElement } from "./styled";
 
 const View = () => {
-    const { pageNavigation } = useSelector((state: any) => state);
+    const { page } = useSelector((state: any) => state.pageNavigation);
 
     return (
         <MainElement>
             <MainContainer>
                 <Header />
-                {pageNavigation.page === "BASIC" && <Basic />}
-                {pageNavigation.page === "SOCIAL" && <Social />}
-                {pageNavigation.page === "CERTIFICATES" && <Certificates />}
+                {page === "BASIC" && <Basic />}
+                {page === "SOCIAL" && <Social />}
+                {page === "CERTIFICATES" && <Certificates />}
             </MainContainer>
         </MainElement>
     );
