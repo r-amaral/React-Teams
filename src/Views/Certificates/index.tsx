@@ -17,12 +17,17 @@ import {
     certificatesInstitution,
     certificatesTeamName,
 } from "../../Redux/ValidateView/Certificates/index.actions";
+import ButtonTeam from "../../Components/Button";
+import IconFinishButton from "../../assets/ButtonIcon/FinishIcon.svg";
+import { ICertificatesReducer } from "../../Interfaces/ICertificatesReducer";
 
 const Certificates = () => {
     const dispatch = useDispatch();
+
     const { certificates, teamName, institution, graduation } = useSelector(
-        (state: any) => state.certificatesReducer
+        (state: ICertificatesReducer) => state.certificatesReducer
     );
+
     return (
         <CertificatesContainer>
             <CertificatesItems>
@@ -63,7 +68,9 @@ const Certificates = () => {
                     value={graduation}
                 />
             </CertificatesInfo>
-            <ButtonTeams>Finish</ButtonTeams>
+            <ButtonTeam icon={IconFinishButton} nextPage={"FORM"}>
+                Finish
+            </ButtonTeam>
         </CertificatesContainer>
     );
 };

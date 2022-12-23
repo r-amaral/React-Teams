@@ -5,7 +5,7 @@ import birthdayReducer from '../ValidateView/Basic/Birthday/index.reducer';
 import socialReducer from '../ValidateView/Social/index.reducer';
 import { certificatesReducer } from '../ValidateView/Certificates/index.reducer';
 
-const reducer = combineReducers({ basicReducer, pageNavigation, birthdayReducer, socialReducer, certificatesReducer });
+export const reducer = combineReducers({ basicReducer, pageNavigation, birthdayReducer, socialReducer, certificatesReducer });
 const store = configureStore({ reducer });
 
 export default store;

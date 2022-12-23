@@ -2,7 +2,7 @@ import { PayloadAction } from "@reduxjs/toolkit"
 import { Constants } from "./index.constants"
 
 const initialState = {
-    certificates: [],
+    certificates: '',
     teamName: '',
     institution: '',
     graduation: ''
@@ -11,7 +11,7 @@ const initialState = {
 export const certificatesReducer = (state = initialState, action: PayloadAction) => {
     switch (action.type) {
         case Constants.CERTIFICATES_CERTIFICATES:
-            return { ...state, certificate: action.payload }
+            return { ...state, certificates: action.payload }
         case Constants.CERTIFICATES_TEAM_NAME:
             return { ...state, teamName: action.payload }
         case Constants.CERTIFICATES_INSTITUTION:

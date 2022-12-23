@@ -1,12 +1,12 @@
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import Birthday from "../../Components/Birthday";
+import ButtonTeam from "../../Components/Button";
+import IconNextButton from "../../assets/ButtonIcon/NextWhite.svg";
 import InputPattern from "../../Components/Input/InputPattern";
 import InputContact from "../../Components/Input/InputContact";
-import Birthday from "../../Components/Birthday";
-
-import { ButtonTeams } from "../../Components/Button/styled";
-
+import { IBasicReducer } from "../../Interfaces/IBasicReducer";
 import { regEmail, regName } from "../../Utils/regex";
 
 import {
@@ -24,13 +24,12 @@ import {
     basicPhone,
     basicTermsVerify,
 } from "../../Redux/ValidateView/Basic/index.actions";
-import { validatePageData } from "../../Utils/validatePageData";
 
 const Basic = () => {
     const termsPrivacy = useRef<HTMLInputElement>(null);
 
     const { fullName, nickName, email, phone, termsVerify } = useSelector(
-        (state: any) => state.basicReducer
+        (state: IBasicReducer) => state.basicReducer
     );
 
     const dispatch = useDispatch();
@@ -84,9 +83,9 @@ const Basic = () => {
                     I accept the terms and privacy
                 </PrivacyTermsLabel>
             </PrivacyTermsContainer>
-            <ButtonTeams onClick={() => validatePageData("SOCIAL")}>
+            <ButtonTeam icon={IconNextButton} nextPage={"SOCIAL"}>
                 Next
-            </ButtonTeams>
+            </ButtonTeam>
         </BasicContainer>
     );
 };

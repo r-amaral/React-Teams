@@ -3,11 +3,12 @@ import { HeaderButton, HeaderContainer, TitleView } from "./styled";
 
 import { currentPage } from "../../Redux/Navigate/index.actions";
 import { validatePageData } from "../../Utils/validatePageData";
+import { IPageNavigation } from "../../Interfaces/IPageNavigation";
 
 const Header = () => {
     const dispatch = useDispatch();
 
-    const { pageNavigation } = useSelector((state: any) => state);
+    const { pageNavigation } = useSelector((state: IPageNavigation) => state);
 
     return (
         <HeaderContainer>

@@ -2,9 +2,10 @@ import { useSelector } from "react-redux";
 import { SocialContainer, SocialInputs } from "./styled";
 
 import InputPattern from "../../Components/Input/InputPattern";
+import ButtonTeam from "../../Components/Button";
+import IconNextButton from "../../assets/ButtonIcon/NextWhite.svg";
 import { regexUrl } from "../../Utils/regex";
-import { ButtonTeams } from "../../Components/Button/styled";
-import { validatePageData } from "../../Utils/validatePageData";
+import { ISocialReducer } from "../../Interfaces/ISocialReducer";
 
 import {
     socialGithub,
@@ -13,7 +14,7 @@ import {
 
 const Social = () => {
     const { linkedin, github } = useSelector(
-        (state: any) => state.socialReducer
+        (state: ISocialReducer) => state.socialReducer
     );
 
     return (
@@ -36,9 +37,9 @@ const Social = () => {
                     value={github}
                 />
             </SocialInputs>
-            <ButtonTeams onClick={() => validatePageData("CERTIFICATES")}>
+            <ButtonTeam icon={IconNextButton} nextPage={"CERTIFICATES"}>
                 Next
-            </ButtonTeams>
+            </ButtonTeam>
         </SocialContainer>
     );
 };
