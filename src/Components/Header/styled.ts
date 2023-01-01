@@ -15,7 +15,7 @@ export const TitleView = styled.h1`
     margin-bottom: 33px;
 `;
 
-export const HeaderButton = styled.button<{ currentPage: any, active: string }>`
+export const HeaderButton = styled.button<{ currentPage: string, active: string }>`
     color: ${({ active, currentPage }) => active === currentPage ? " #074EE8" : "#111111"};
     grid-row: 2;
     background: #ffffff;

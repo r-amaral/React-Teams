@@ -15,7 +15,7 @@ export const validatePageData = (page: string): void | boolean => {
         termsPrivacy: termsVerify,
     };
 
-    const validateData = Object.values(basicState).every((attr: any) => attr === true)
+    const validateData = Object.values(basicState).every((attr: boolean) => attr === true)
 
     switch (page) {
         case "CERTIFICATES":

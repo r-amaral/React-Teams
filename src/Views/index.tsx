@@ -1,12 +1,15 @@
 import { useSelector } from "react-redux";
-import Header from "../Components/Header";
+
 import Basic from "./Basic";
-import Certificates from "./Certificates";
 import Social from "./Social";
+import Certificates from "./Certificates";
 import { MainContainer, MainElement } from "./styled";
 
+import Header from "../Components/Header";
+import { IPage } from "../Interfaces/IPage";
+
 const View = () => {
-    const { page } = useSelector((state: any) => state.pageNavigation);
+    const { page } = useSelector((state: IPage) => state.pageNavigation);
 
     return (
         <MainElement>

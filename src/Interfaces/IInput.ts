@@ -4,5 +4,6 @@ export interface IInput {
     placeholder: string;
     validate?: any;
     value: string | number;
-    modifyState: any;
+    modifyState?: any;
+    id?: number
 }

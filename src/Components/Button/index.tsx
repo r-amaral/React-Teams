@@ -1,7 +1,9 @@
-import { validatePageData } from "../../Utils/validatePageData";
 import { ButtonTeams, IconButton } from "./styled";
 
-const ButtonTeam = ({ icon, children, nextPage }: any) => {
+import { IButton } from "../../Interfaces/IButton";
+import { validatePageData } from "../../Utils/validatePageData";
+
+const ButtonTeam = ({ icon, children, nextPage }: IButton) => {
     return (
         <ButtonTeams onClick={() => validatePageData(nextPage)}>
             {children}

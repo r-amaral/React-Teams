@@ -25,7 +25,7 @@ export const basicValidateBirthday = (validateBirthday: boolean) => ({
     payload: validateBirthday
 })
 
-export const basicTermsVerify = (termsVerify: any) => ({
+export const basicTermsVerify = (termsVerify: boolean) => ({
     type: Constants.BASIC_TERMS_VERIFY,
     payload: termsVerify
 })

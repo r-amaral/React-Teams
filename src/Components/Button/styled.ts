@@ -20,7 +20,7 @@ cursor: pointer;
 gap: 13px;
 `
 
-export const IconButton = styled.i<{ icon: any }>`
+export const IconButton = styled.i<{ icon: string }>`
 background: url(${({ icon }) => icon}) no-repeat;
 background-position: center left;
 height: 100%;

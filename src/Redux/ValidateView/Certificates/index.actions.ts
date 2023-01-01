@@ -1,8 +1,19 @@
+import { IActionCertificate } from "../../../Interfaces/IActionCertificate";
 import { Constants } from "./index.constants";
 
-export const certificatesCertificatesUser = (certificates: string) => ({
+export const certificatesCertificatesUser = (certificates: IActionCertificate) => ({
     type: Constants.CERTIFICATES_CERTIFICATES,
     payload: certificates
+})
+
+export const certificatesValue = (certificatesValues: IActionCertificate) => ({
+    type: Constants.CERTIFICATES_VALUES,
+    payload: certificatesValues,
+})
+
+export const certificatesFavorite = (certificatesFavorite: IActionCertificate) => ({
+    type: Constants.CERTIFICATES_FAVORITE,
+    payload: certificatesFavorite,
 })
 
 export const certificatesTeamName = (teamName: string) => ({

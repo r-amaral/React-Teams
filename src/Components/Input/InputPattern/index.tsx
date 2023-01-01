@@ -1,6 +1,8 @@
 import { useDispatch } from "react-redux";
-import { IInput } from "../../../Interfaces/IInput";
+
 import { InputContainer, LabelStyle, InputStyle } from "../styled";
+
+import { IInput } from "../../../Interfaces/IInput";
 
 const InputPattern = ({
     type,

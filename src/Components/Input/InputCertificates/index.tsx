@@ -1,29 +1,63 @@
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import { IconHeart, InputCertificatesContainer } from "./styled";
-import { IInput } from "../../../Interfaces/IInput";
+
 import { InputStyle } from "../styled";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
+
+import { IInput } from "../../../Interfaces/IInput";
+import { ICertificatesReducer } from "../../../Interfaces/ICertificatesReducer";
+import {
+    certificatesFavorite,
+    certificatesValue,
+} from "../../../Redux/ValidateView/Certificates/index.actions";
 
 const InputCertificates = ({
     type,
     placeholder,
-    modifyState,
     validate,
     value,
+    id,
 }: IInput) => {
+    const { certificates } = useSelector(
+        (state: ICertificatesReducer) => state.certificatesReducer
+    );
     const dispatch = useDispatch();
-    const [icon, setIcon] = useState<boolean>(true);
+
+    const thisCertificate = certificates.find(
+        (attr: { id: number | undefined }) => attr.id === id
+    );
+
     return (
-        <InputCertificatesContainer>
-            <InputStyle
-                validate={validate}
-                type={type}
-                placeholder={placeholder}
-                onChange={({ target }) => dispatch(modifyState(target.value))}
-                value={value}
-            />
-            <IconHeart icon={icon} onClick={() => setIcon(!icon)} />
-        </InputCertificatesContainer>
+        <React.Fragment>
+            <InputCertificatesContainer>
+                <InputStyle
+                    validate={validate}
+                    type={type}
+                    placeholder={placeholder}
+                    onChange={({ target }) =>
+                        dispatch(
+                            certificatesValue({
+                                value: target.value,
+                                id: id,
+                            })
+                        )
+                    }
+                    value={value}
+                />
+                <IconHeart
+                    icon={thisCertificate.isFavorite}
+                    onClick={() =>
+                        dispatch(
+                            certificatesFavorite({
+                                isFavorite: !thisCertificate.isFavorite,
+                                id: id,
+                            })
+                        )
+                    }
+                />
+            </InputCertificatesContainer>
+        </React.Fragment>
     );
 };
 

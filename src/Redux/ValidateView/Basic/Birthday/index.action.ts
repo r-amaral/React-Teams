@@ -1,8 +1,8 @@
 import { Constants } from './index.constants';
 
-export const birthdayDay = (year: number | string) => ({
+export const birthdayDay = (day: number | string) => ({
     type: Constants.BIRTHDAY_DAY,
-    payload: year
+    payload: day
 })
 
 export const birthdayMonth = (month: number | string) => ({
@@ -19,5 +19,3 @@ export const birthdayAge = (age: number | string) => ({
     type: Constants.BIRTHDAY_AGE,
     payload: age
 })
-
-

@@ -6,7 +6,6 @@ import ButtonTeam from "../../Components/Button";
 import IconNextButton from "../../assets/ButtonIcon/NextWhite.svg";
 import { regexUrl } from "../../Utils/regex";
 import { ISocialReducer } from "../../Interfaces/ISocialReducer";
-
 import {
     socialGithub,
     socialLinkedin,
@@ -23,15 +22,14 @@ const Social = () => {
                 <InputPattern
                     type="text"
                     labelName="Linkedin"
-                    placeholder="https://www.linkedin.com/in/foo-bar-3a0560104"
+                    placeholder="https://www.linkedin.com/in/ruan-oliveira/"
                     modifyState={socialLinkedin}
-                    validate={false}
                     value={linkedin}
                 />
                 <InputPattern
                     type="text"
                     labelName="GitHub *"
-                    placeholder="https://github.com/foobar"
+                    placeholder="https://github.com/r-amaral"
                     modifyState={socialGithub}
                     validate={regexUrl.test(github)}
                     value={github}

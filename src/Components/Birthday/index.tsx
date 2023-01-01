@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import SelectBirthDay from "./SelectBirthDay";
 
+import { IBirtday } from "../../Interfaces/IBirthday";
 import { birthdayAge } from "../../Redux/ValidateView/Basic/Birthday/index.action";
 
 import {
@@ -15,11 +16,11 @@ import {
 import { basicValidateBirthday } from "../../Redux/ValidateView/Basic/index.actions";
 
 const Birthday = () => {
-    const dispatch = useDispatch();
-
     const { day, month, year, age } = useSelector(
-        (state: any) => state.birthdayReducer
+        (state: IBirtday) => state.birthdayReducer
     );
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (day && month && year) calculateAge(day, month, year);

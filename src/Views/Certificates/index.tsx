@@ -1,4 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 
 import {
     CertificatesContainer,
@@ -7,23 +8,20 @@ import {
     CertificatesTitle,
 } from "./styled";
 
+import ButtonTeam from "../../Components/Button";
 import InputPattern from "../../Components/Input/InputPattern";
+import MoreButtonTeam from "../../Components/Button/More";
+import IconFinishButton from "../../assets/ButtonIcon/FinishIcon.svg";
 import InputCertificates from "../../Components/Input/InputCertificates";
-import { ButtonTeams } from "../../Components/Button/styled";
 import { regName } from "../../Utils/regex";
+import { ICertificatesReducer } from "../../Interfaces/ICertificatesReducer";
 import {
-    certificatesCertificatesUser,
     certificatesIGraduation,
     certificatesInstitution,
     certificatesTeamName,
 } from "../../Redux/ValidateView/Certificates/index.actions";
-import ButtonTeam from "../../Components/Button";
-import IconFinishButton from "../../assets/ButtonIcon/FinishIcon.svg";
-import { ICertificatesReducer } from "../../Interfaces/ICertificatesReducer";
 
 const Certificates = () => {
-    const dispatch = useDispatch();
-
     const { certificates, teamName, institution, graduation } = useSelector(
         (state: ICertificatesReducer) => state.certificatesReducer
     );
@@ -32,15 +30,22 @@ const Certificates = () => {
         <CertificatesContainer>
             <CertificatesItems>
                 <CertificatesTitle>Cerficates</CertificatesTitle>
-                <InputCertificates
-                    type="text"
-                    placeholder="https://www.linkedin.com/ruan-amaral/"
-                    validate={false}
-                    modifyState={certificatesCertificatesUser}
-                    value={certificates}
-                />
+                <React.Fragment>
+                    {certificates.map((item: any) => (
+                        <InputCertificates
+                            key={item.id}
+                            type="text"
+                            placeholder="https://www.linkedin.com/ruan-amaral/"
+                            value={
+                                certificates.find((e: any) => e.id == item.id)
+                                    .value
+                            }
+                            id={item.id}
+                        />
+                    ))}
+                </React.Fragment>
             </CertificatesItems>
-            <ButtonTeams>More</ButtonTeams>
+            <MoreButtonTeam />
 
             <CertificatesInfo>
                 <InputPattern

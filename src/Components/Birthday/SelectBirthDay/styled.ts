@@ -16,6 +16,7 @@ border-radius: 4px;
 padding: 0 15px;
 font-size: 16px;
 color: #767676;
+cursor: pointer;
 `
 
 export const SelectName = styled.span<{ states: number | string | undefined }>`
@@ -30,4 +31,3 @@ display: flex;
 justify-content: center;
 align-items: center;
 `
-

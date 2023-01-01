@@ -1,4 +1,3 @@
-import { Dispatch, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { ITypeSelect } from "../../../Interfaces/ITypeSelect";
 
@@ -42,7 +41,7 @@ const SelectBirthDay = ({ type, states, dateDefault }: ITypeSelect) => {
         type === "Year" ? (date[i] = 2023 - i) : (date[i] = i);
     }
 
-    const handleSelect = ({ target }: any) => {
+    const handleSelect = ({ target }: React.ChangeEvent<HTMLSelectElement>) => {
         switch (type) {
             case "Day":
                 return dispatch(birthdayDay(target.value));

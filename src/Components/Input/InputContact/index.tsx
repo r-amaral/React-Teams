@@ -1,8 +1,11 @@
-import { InputStyle, LabelStyle } from "../styled";
-import { InputContactContainer } from "./styled";
 import InputMask from "react-input-mask";
-import { IInput } from "../../../Interfaces/IInput";
 import { useDispatch } from "react-redux";
+
+import { InputContactContainer } from "./styled";
+
+import { InputStyle, LabelStyle } from "../styled";
+
+import { IInput } from "../../../Interfaces/IInput";
 
 const InputContact = ({
     type,

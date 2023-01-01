@@ -8,6 +8,13 @@ import InputPattern from "../../Components/Input/InputPattern";
 import InputContact from "../../Components/Input/InputContact";
 import { IBasicReducer } from "../../Interfaces/IBasicReducer";
 import { regEmail, regName } from "../../Utils/regex";
+import {
+    basicEmail,
+    basicFullName,
+    basicNickName,
+    basicPhone,
+    basicTermsVerify,
+} from "../../Redux/ValidateView/Basic/index.actions";
 
 import {
     BasicContainer,
@@ -16,14 +23,6 @@ import {
     PrivacyTermsContainer,
     PrivacyTermsLabel,
 } from "./styled";
-
-import {
-    basicEmail,
-    basicFullName,
-    basicNickName,
-    basicPhone,
-    basicTermsVerify,
-} from "../../Redux/ValidateView/Basic/index.actions";
 
 const Basic = () => {
     const termsPrivacy = useRef<HTMLInputElement>(null);
@@ -39,7 +38,7 @@ const Basic = () => {
             <InputPattern
                 type="text"
                 labelName="Full Name *"
-                placeholder="Foo Bar"
+                placeholder="Ruan Oliveira"
                 modifyState={basicFullName}
                 validate={regName.test(fullName)}
                 value={fullName}
@@ -47,7 +46,7 @@ const Basic = () => {
             <InputPattern
                 type="text"
                 labelName="Nickname"
-                placeholder="Juanito"
+                placeholder="Ruanzin"
                 modifyState={basicNickName}
                 value={nickName}
             />
@@ -55,7 +54,7 @@ const Basic = () => {
                 <InputContact
                     type="text"
                     labelName="Email *"
-                    placeholder="foo@bar.com"
+                    placeholder="ruan@gmail.com"
                     modifyState={basicEmail}
                     validate={regEmail.test(email)}
                     value={email}
