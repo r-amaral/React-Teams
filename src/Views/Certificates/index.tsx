@@ -26,23 +26,31 @@ const Certificates = () => {
         (state: ICertificatesReducer) => state.certificatesReducer
     );
 
+    const renderCertificates = (certificate: any) => (
+        <InputCertificates
+            key={certificate.id}
+            type="text"
+            placeholder="https://www.linkedin.com/ruan-amaral/"
+            value={certificates.find((e: any) => e.id == certificate.id).value}
+            id={certificate.id}
+        />
+    );
+
     return (
         <CertificatesContainer>
             <CertificatesItems>
                 <CertificatesTitle>Cerficates</CertificatesTitle>
                 <React.Fragment>
-                    {certificates.map((item: any) => (
-                        <InputCertificates
-                            key={item.id}
-                            type="text"
-                            placeholder="https://www.linkedin.com/ruan-amaral/"
-                            value={
-                                certificates.find((e: any) => e.id == item.id)
-                                    .value
-                            }
-                            id={item.id}
-                        />
-                    ))}
+                    {certificates.map(
+                        (certificate: any) =>
+                            certificate.isFavorite &&
+                            renderCertificates(certificate)
+                    )}
+                    {certificates.map(
+                        (certificate: any) =>
+                            !certificate.isFavorite &&
+                            renderCertificates(certificate)
+                    )}
                 </React.Fragment>
             </CertificatesItems>
             <MoreButtonTeam />

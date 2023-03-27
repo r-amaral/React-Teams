@@ -11,6 +11,11 @@ export const certificatesValue = (certificatesValues: IActionCertificate) => ({
     payload: certificatesValues,
 })
 
+export const certificatesRemove = (certificatesRemove: IActionCertificate) => ({
+    type: Constants.CERTIFICATES_REMOVE,
+    payload: certificatesRemove,
+})
+
 export const certificatesFavorite = (certificatesFavorite: IActionCertificate) => ({
     type: Constants.CERTIFICATES_FAVORITE,
     payload: certificatesFavorite,

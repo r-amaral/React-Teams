@@ -23,10 +23,13 @@ const MoreButtonTeam = () => {
                 dispatch(
                     certificatesCertificatesUser({
                         value: "",
-                        id:
-                            Math.max(
-                                ...certificates.map((a: { id: number }) => a.id)
-                            ) + 1,
+                        id: certificates.length
+                            ? Math.max(
+                                  ...certificates.map(
+                                      (a: { id: number }) => a.id
+                                  )
+                              ) + 1
+                            : 0,
                         isFavorite: false,
                     })
                 )

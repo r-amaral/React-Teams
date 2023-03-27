@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { IconHeart, InputCertificatesContainer } from "./styled";
+import { Icon, IconHeart, InputCertificatesContainer } from "./styled";
 
 import { InputStyle } from "../styled";
 
@@ -9,6 +9,7 @@ import { IInput } from "../../../Interfaces/IInput";
 import { ICertificatesReducer } from "../../../Interfaces/ICertificatesReducer";
 import {
     certificatesFavorite,
+    certificatesRemove,
     certificatesValue,
 } from "../../../Redux/ValidateView/Certificates/index.actions";
 
@@ -55,6 +56,10 @@ const InputCertificates = ({
                             })
                         )
                     }
+                />
+                <Icon
+                    icon
+                    onClick={() => dispatch(certificatesRemove({ id: id }))}
                 />
             </InputCertificatesContainer>
         </React.Fragment>

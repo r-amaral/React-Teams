@@ -4,6 +4,10 @@ export const SelectContainer = styled.div`
 display: flex;
 flex-direction: column;
 width:23%;
+
+@media screen and (max-width:768px){
+    width: 100%;
+}
 `
 
 export const SelectStyle = styled.select<{ states: number | string | undefined }>`

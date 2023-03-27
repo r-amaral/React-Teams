@@ -2,7 +2,7 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { Constants } from './index.constants'
 
 export const initialState = {
-    page: 'BASIC'
+    page: 'CERTIFICATES'
 }
 
 const pageNavigation = (state = initialState, action: PayloadAction<string>) => {

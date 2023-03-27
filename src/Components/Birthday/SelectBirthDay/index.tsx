@@ -35,10 +35,14 @@ const SelectBirthDay = ({ type, states, dateDefault }: ITypeSelect) => {
         "December",
     ];
 
-    type === "Year" ? (dateValue = 123) : (dateValue = 31);
+    if (type === "Year") {
+        dateValue = 123;
+    } else dateValue = 31;
 
     for (let i = 1; i <= dateValue; i++) {
-        type === "Year" ? (date[i] = 2023 - i) : (date[i] = i);
+        if (type === "Year") {
+            date[i] = 2023 - i;
+        } else date[i] = i;
     }
 
     const handleSelect = ({ target }: React.ChangeEvent<HTMLSelectElement>) => {

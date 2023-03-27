@@ -13,6 +13,7 @@ export const TitleView = styled.h1`
     line-height: 24px;
     color: #111111;
     margin-bottom: 33px;
+    grid-column: span 3;
 `;
 
 export const HeaderButton = styled.button<{ currentPage: string, active: string }>`

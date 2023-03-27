@@ -7,7 +7,7 @@ width: 100%;
 `
 
 export const MainContainer = styled.div`
-padding: 40px 50px 0 50px;
+padding: 40px 40px;
 width: 100%;
 max-width: 800px;
 box-sizing: border-box;

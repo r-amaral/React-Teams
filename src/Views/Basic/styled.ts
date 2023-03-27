@@ -10,6 +10,11 @@ export const ContactContainer = styled.div`
 display: flex;
 flex-direction: row;
 gap: 24px;
+
+@media screen and (max-width:768px){
+    flex-wrap: wrap;
+    gap: 35px;
+}
 `
 
 export const PrivacyTermsContainer = styled.div`

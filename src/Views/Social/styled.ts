@@ -10,5 +10,5 @@ export const SocialInputs = styled.div`
 display: flex;
 flex-direction: column;
 gap: 35px;
-margin-bottom: 30vh;
+margin-bottom: 31.1vh;
 `
